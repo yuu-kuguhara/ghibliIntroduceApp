@@ -1,0 +1,177 @@
+body {
+    background: linear-gradient(to bottom, #b3e5fc, #ffffff); /* 青空っぽい */
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+h1 {
+    font-family: 'Kosugi Maru', sans-serif; /* 丸文字 */
+    font-size: 2rem;
+    color: #2a5c84; /* 青空に合う落ち着いた青 */
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px dashed #91d2f0; /* 空っぽい点線下線 */
+}
+
+
+#worksList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 横4列 */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.work-item {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.work-item img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.work-item strong {
+    font-size: 1.2rem;
+    color: black;
+}
+
+/* 浮かんでバウンドするアニメーション */
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); } /* 上下移動の量 */
+    100% { transform: translateY(0px); }
+}
+
+@keyframes swing {/* rotate()→「ゆら～っ」と揺れる効果 */
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(3deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.img {/* 3s→アニメーションの速度（ゆったり） */
+    animation: float 3s ease-in-out infinite, swing 4s ease-in-out infinite;
+    display: block;
+    margin: 0 auto;
+    transform-origin: center bottom;
+}
+
+/* 吹き出し全体 */
+.balloon {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    padding: 10px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+/* 吹き出しの三角部分（下） */
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* 画像の位置調整用 */
+figure.kuro {
+    position: relative;
+    display: inline-block;
+    margin-top: 2rem;
+}
+
+/* 横並びのコンテナ */
+.figure-container {
+    display: flex;
+    justify-content: space-around; /* 等間隔に配置 */
+    align-items: flex-end;
+    margin: 2rem 0;
+    gap: 2rem;
+}
+
+/* 各 figure */
+figure.kuro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 吹き出しリンク */
+.balloon {
+    position: absolute;
+    top: -80px;
+    text-decoration: none;
+    padding: 10px 12px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    color: #333;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+/* 吹き出しの文字 */
+.label {
+    display: block;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+/* オーバーレイ背景全体 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* 背景ぼかし */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: none;
+    z-index: 1000;
+}
+
+/* 中央のテキストボックス */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.85);
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* 閉じるボタン */
+#modalClose {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
